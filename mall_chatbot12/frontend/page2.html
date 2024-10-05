@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mall Chatbot Guide</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: url("D:/2ND YEAR/intel hack/intelday/mall_chatbot.py/bg1.png") no-repeat center center;
+      background-size: cover;
+    }
+    .container {
+      width: 700px; /* Increased width */
+      max-width: 90%; /* Responsive max width */
+      padding: 30px; /* Increased padding */
+      background-color: white;
+      border-radius: 10px;
+      border: 2px solid black;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+      text-align: left;
+      position: relative;
+      overflow: hidden; /* Prevent overflow */
+    }
+    .chatbot-logo {
+      width: 100px; /* Increased size */
+      height: 100px;
+      border-radius: 50%; /* Circular shape */
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      margin-bottom: 20px;
+      object-fit: cover; /* Ensures the logo fits within the circle */
+    }
+    .columns {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 120px; /* Adjusted margin-top to fit larger logo */
+      flex-wrap: wrap; /* Allows for responsive layout */
+    }
+    .column {
+      width: 48%; /* Adjusted for more space */
+      padding: 15px;
+      background-color: #f8ebeb;
+      border: 1px solid black;
+      border-radius: 8px;
+      margin-bottom: 20px; /* Spacing between columns */
+    }
+    h3 {
+      font-size: 18px; /* Increased header size */
+      margin-bottom: 10px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+    }
+    li {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    li span {
+      font-weight: bold;
+    }
+    .button-container {
+      margin-top: 20px;
+      text-align: center; /* Center button */
+    }
+    button {
+      background-color: #ffffff;
+      border: 2px solid #000000;
+      padding: 10px 20px;
+      font-size: 16px; /* Increased button size */
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s; /* Smooth transition */
+    }
+    button:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="D:/2ND YEAR/intel hack/intelday/mall_chatbot.py/intellogo.png" alt="Chatbot Logo" class="chatbot-logo">
+    
+    <div class="columns">
+      <div class="column">
+        <h3>How to Use the Mall Chatbot:</h3>
+        <ul>
+          <li><span>1. Search Products:</span> Type or ask for a product to see available stores and offers.</li>
+          <li><span>2. Find Stores:</span> Ask for a store’s location, opening hours, or directions.</li>
+          <li><span>3. View Discounts:</span> Explore current promotions across different categories.</li>
+          <li><span>4. Get Directions:</span> Ask for directions to any store or facility within the mall.</li>
+          <li><span>5. Inquire About Services:</span> Find information on mall services like parking, dining, or amenities.</li>
+        </ul>
+      </div>
+      
+      <div class="column">
+        <h3>How Not to Use the Mall Chatbot:</h3>
+        <ul>
+          <li><span>1. Avoid Vague Questions:</span> Don’t ask general queries like “I need something” – be specific.</li>
+          <li><span>2. Don’t Spam Repeated Queries:</span> Asking the same question multiple times won’t speed up responses.</li>
+          <li><span>3. Avoid Irrelevant Requests:</span> The chatbot cannot help with non-mall-related inquiries.</li>
+          <li><span>4. Don’t Use Slang or Abbreviations:</span> Stick to clear and simple language for better results.</li>
+          <li><span>5. No Sensitive Information:</span> Never share personal or payment details through the chatbot.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button onclick="location.href='index.html';">CONFIRM</button>
+    </div>
+  </div>
+
+</body>
+</html>

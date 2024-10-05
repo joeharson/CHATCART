@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Your existing CSS styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url("bg1.png") no-repeat center center fixed;
+            background-size: cover;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            opacity: 0; /* Start with the page invisible */
+            transition: opacity 0.5s ease-in-out; /* Smooth fade-in */
+        }
+
+        .welcome-message {
+            font-size: 110px;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: popUp 0.5s forwards;
+            position: absolute;
+            left: 50px;
+            top: 150px;
+        }
+
+        .tagline {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 50px;
+            position: absolute;
+            left: 100px;
+            top: 300px;
+        }
+
+        @keyframes popUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            text-align: left;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .logo img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .input-container {
+            margin-bottom: 15px;
+            text-align: left;
+            position: relative; /* Added for positioning */
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input {
+            width: calc(100% - 60px); /* Reduce width to allow space for the "Show" text */
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #createAccountBtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        #createAccountBtn:hover {
+            background-color: #45a049;
+        }
+
+        .auth-links {
+            margin-top: 20px;
+        }
+
+        .auth-links a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Styles for the Show text */
+        .toggle-password {
+            cursor: pointer;
+            color: #007bff;
+            font-size: 14px; /* Adjust font size */
+            margin-left: 10px; /* Space between input and text */
+            vertical-align: middle; /* Align with the input field */
+        }
+
+        .toggle-password:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+        import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDg__iFrc-vpB7eDxsM9iFKwtg5wopeQTY",
+            authDomain: "rideable-292df.firebaseapp.com",
+            projectId: "rideable-292df",
+            storageBucket: "rideable-292df.appspot.com",
+            messagingSenderId: "704762507977",
+            appId: "1:704762507977:web:87d4e539cce9010ef69318",
+            measurementId: "G-GH6FML64D0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Function to handle signup
+        window.signUp = function (email, password, name, phone) {
+            return createUserWithEmailAndPassword(auth, email, password)
+                .then(async (userCredential) => {
+                    const user = userCredential.user;
+                    // Store user data in Firestore
+                    await setDoc(doc(db, "users", user.uid), {
+                        name: name,
+                        email: email,
+                        phone: phone
+                    });
+                    return user;
+                });
+        };
+    </script>
+</head>
+<body>
+    <div class="welcome-message">Welcome!</div>
+    <div class="tagline">Shop Smart, Find Fast with ChatCart</div>
+
+    <div class="container">
+        <div class="logo">
+            <img src="D:\2ND YEAR\intel hack\intelday\mall_chatbot.py\intellogo.png">
+        </div>
+
+        <form id="signupForm">
+            <div class="input-container">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="input-container">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-container">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="input-container">
+                <label for="password">Password:</label>
+                <div style="display: flex; align-items: center;">
+                    <input type="password" id="password" name="password" required>
+                    <span class="toggle-password" id="togglePassword">Show</span> <!-- Text link for showing password -->
+                </div>
+            </div>
+            <button type="submit" id="createAccountBtn">Create Account</button>
+        </form>
+
+        <div class="auth-links">
+            <p>Already have an account? <a href="login.html">Sign In</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const phone = document.getElementById('phone').value;
+
+            signUp(email, password, name, phone)
+                .then(() => {
+                    alert('Account created successfully! You can now sign in.');
+                    // Redirect to login page
+                    window.location.href = "login.html";
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    alert('Error: ' + errorMessage);
+                });
+        });
+
+        // Show/Hide Password Functionality
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.textContent = type === 'password' ? 'Show' : 'Hide'; // Change text based on visibility
+        });
+
+        window.onload = function() {
+            document.body.style.opacity = 1; // Fade in when the page loads
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom right, #f0f8ff, #7cd0db); /* Light gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333; /* Darker font color for contrast */
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly white background for the container */
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome-message {
+            font-size: 60px; /* Increased font size */
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow for depth */
+        }
+
+        .tagline {
+            font-size: 26px; /* Slightly larger tagline */
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        #getStartedBtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px; /* Increased font size */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Transition for hover effect */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        }
+
+        #getStartedBtn:hover {
+            background-color: #45a049;
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+
+        #getStartedBtn:active {
+            transform: scale(0.95); /* Slightly smaller when clicked */
+        }
+
+        /* Add a responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            .welcome-message {
+                font-size: 40px;
+            }
+
+            .tagline {
+                font-size: 20px;
+            }
+
+            #getStartedBtn {
+                padding: 10px 20px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-message">Welcome to ChatCart!</div>
+        <div class="tagline">Shop Smart, Find Fast with ChatCart.</div>
+        <button id="getStartedBtn" onclick="location.href='signup.html';">Get Started</button>
+    </div>
+</body>
+</html>

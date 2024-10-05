@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+        
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDg__iFrc-vpB7eDxsM9iFKwtg5wopeQTY",
+            authDomain: "rideable-292df.firebaseapp.com",
+            projectId: "rideable-292df",
+            storageBucket: "rideable-292df.appspot.com",
+            messagingSenderId: "704762507977",
+            appId: "1:704762507977:web:87d4e539cce9010ef69318",
+            measurementId: "G-GH6FML64D0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app); // Initialize Firebase Auth
+
+        // Event listener for the login form
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('loginForm');
+
+            loginForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                // Sign in with email and password
+                signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        // Signed in
+                        const user = userCredential.user;
+                        alert('Login successful! Redirecting...');
+                        // Redirect to another page (replace "page2.html" with your target page)
+                        window.location.href = "page2.html"; 
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        console.error("Error logging in:", errorCode, errorMessage);
+                        document.getElementById('errorMessage').style.display = 'block'; // Show error message
+                    });
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0f7fa;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: left;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Transition for the container */
+            transform: translateY(20px); /* Start below */
+            opacity: 0; /* Start invisible */
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .input-container {
+            margin-bottom: 15px;
+            position: relative; /* Added for positioning */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        #loginBtn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #loginBtn:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none; /* Hide by default */
+        }
+
+        .show-password {
+            cursor: pointer;
+            color: #007bff;
+            font-size: 14px; /* Adjust font size */
+            position: absolute;
+            right: 0px; /* Positioning */
+            top: 55%; /* Adjust to vertically align with the input field */
+        }
+
+        .show-password:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="input-container">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <span class="show-password" onclick="togglePassword()">Show</span> <!-- Text link for showing password -->
+            </div>
+            <button type="submit" id="loginBtn">Login</button>
+            <div class="error-message" id="errorMessage">Invalid email or password</div>
+        </form>
+    </div>
+
+    <script>
+        window.onload = function () {
+            // Animate container when the page loads
+            const container = document.querySelector('.container');
+            container.style.transform = 'translateY(0)'; // Move to original position
+            container.style.opacity = 1; // Fade in
+        };
+
+        // Function to toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            document.querySelector('.show-password').textContent = type === 'password' ? 'Show' : 'Hide'; // Change text based on visibility
+        }
+    </script>
+</body>
+</html>
